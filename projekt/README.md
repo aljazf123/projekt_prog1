@@ -1,59 +1,50 @@
-# Končni avtomati
+# Projektna naloga
+## Mealyev avtomat
+V teoriji računanja je Mealyev avtomat, determinističen avtomat s končnim stanjem katerega donos je odvisen od trenutnega stanja in trenutnega vnosa.
 
-Projekt vsebuje implementacijo končnih avtomatov, enega najpreprostejših računskih modelov, ter njihovo uporabo pri karakterizaciji nizov. Končni avtomat začne v enem izmed možnih stanj, nato pa glede na trenutno stanje in trenutni simbol preide v neko novo stanje. Če ob pregledu celotnega niza konča v enem od sprejemnih stanj, je niz sprejet, sicer pa ni.
+## Formalna definicija
 
-Za tekoči primer si oglejmo avtomat, ki sprejema nize, sestavljene iz ničel in enic, v katerih da vsota enic pri deljenju s 3 ostanek 1. Tak avtomat predstavimo z naslednjim diagramom, na katerem je začetno stanje označeno s puščico, sprejemna stanja pa so dvojno obkrožena.
+Mealyev stroj je 6 terica $(S, S_0 , \Sigma, \Lambda, T, G)$ sestavljena iz:
 
-TODO
+- končne množice stanj $S$
+- začetnega stanja $S_0$, ki je element množice $S$
+- končena množica vhodnih znakov $\Sigma$ (vhodna abeceda)
+- končena množica izhodnih znakov $\Lambda$ (izhodna abeceda)
+- prehodnih funkcij $T : S \times \Sigma \rightarrow S$, ki silka par stanja in vnosa v naslednjo stanje
+- izhodnih funkcij $G : S \times \Sigma \rightarrow \Lambda$, ki slika par stanja in vnosa v izhodni znak
 
-## Matematična definicija
+## Razlike od Mooreovega avtomata
+- Mealyev avtoma ima načeloma manj stanj
+- Mealyev avtomat je bolj varen in se odzove hitreje na vnos, ko ga implementiramo v električno vezje
 
-Končni avtomat je definiran kot nabor $(\Sigma, Q, q_0, F, \delta)$, kjer so:
+## Projekt
+Moja implementacija Mealyevega avtomata v nalogi, je izhajala iz ideje kako poiskati telefonsko številko v decimalkah pi-ja.
+To idejo sem še malo razširil saj ujemanje 9 mestnega števila v manj kot 10000 decimalkah pi-ja skoraj nima smisla,
+namreč vrjetnost je premajhna. Avtomat pa bit takrat vrnil 10000 znakov. Zato sem to idejo nadomestil na iskanje poljubne (krajše) dolžine vzorca (števila),
+nato pa še dodal druge konstane in iskanje v poljubnem številu. 
 
-- $\Sigma$ množica simbolov oz. abeceda,
-- $Q$ množica stanj,
-- $q_0 \in Q$ začetno stanje,
-- $F \subseteq Q$ množica sprejemnih stanj in
-- $\delta : Q \times \Sigma \to Q$ prehodna funkcija.
+Primer: *Iskanje števila 23 v 31415926535897932384626433 (pi spremenjen v naravno število)
+in avtomat vrne  _______X_______________X___, kjer je X mesto, kjer se ujemnaje konča.*
 
-Na primer, zgornji končni avtomat predstavimo z naborom $(\{0, 1\}, \{q_0, q_1, q_2\}, q_0, \{q_1\}, \delta)$, kjer je $\delta$ podana z naslednjo tabelo:
+Primer: *Iskanje 252 v 2525265 (poljubno število) naj tukaj avtomat vrne __X_X__ ali __X____?
+Izkaže se, da je bolj smiselen odgovor drugi. Tukaj sem si pomagal s KMP algoritmom, ki je algoritem za delno ujemnaje in prvo možnost izloči.
+Več o njemu najdete v virih.*
 
-| $\delta$ | `0`   | `1`   |
-| -------- | ----- | ----- |
-| $q_0$    | $q_0$ | $q_1$ |
-| $q_1$    | $q_2$ | $q_0$ |
-| $q_2$    | $q_1$ | $q_2$ |
+Končni idelek torej sprejme 2 vnosa: 
+- nek vzorec (niz števk)
+- število v katerem želimo vzorec poiskati (pi,e,phi ali poljubno napisano število)
 
 ## Navodila za uporabo
-
-Ker projekt služi kot osnova za večje projekte, so njegove lastnosti zelo okrnjene. Konkretno implementacija omogoča samo zgoraj omenjeni končni avtomat. Na voljo sta dva vmesnika, tekstovni in grafični. Oba prevedemo z ukazom `dune build`, ki v korenskem imeniku ustvari datoteko `tekstovniVmesnik.exe`, v imeniku `html` pa JavaScript datoteko `spletniVmesnik.bc.js`, ki se izvede, ko v brskalniku odpremo `spletniVmesnik.html`.
-
-Če OCamla nimate nameščenega, lahko še vedno preizkusite tekstovni vmesnik prek ene od spletnih implementacij OCamla, najbolje <http://ocaml.besson.link/>, ki podpira branje s konzole. V tem primeru si na vrh datoteke `tekstovniVmesnik.ml` dodajte še vrstice
-
-```ocaml
-module Avtomat = struct
-    (* celotna vsebina datoteke avtomat.ml *)
-end
-```
+Program se priže z ukazom _Task : Run Task -> Ocaml_ v programu VSCode
+ali prek spleta na povezavi \url{https://www.tutorialspoint.com/compile_ocaml_online.php}, 
+kamor skopirate celotno vsebino datoteke avtomat.ml
 
 ### Tekstovni vmesnik
+S programom komunicirate preko preprostega tekstovnega vmesnika, le ta pa vam bo dal navodila za uporabo.
 
-TODO
+## Viri
 
-### Spletni vmesnik
+-  \url{https://en.wikipedia.org/wiki/Mealy_machine}
+-  \url{https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm}
+-  \url{https://github.com/matijapretnar/programiranje-1}
 
-TODO
-
-## Implementacija
-
-### Struktura datotek
-
-TODO
-
-### `avtomat.ml`
-
-TODO
-
-### `model.ml`
-
-TODO
