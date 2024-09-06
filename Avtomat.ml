@@ -125,7 +125,7 @@ let () =
     let dolga_stevilka_ali_konstanta = read_int_from_user "Da preverite, ali se vaša številka pojavi v (1)pi-ju, (2)e-ju, (3)phi-ju, vpišite številko v oklepaju pred konstanto, za poljubno število pa ga v celoti izpišite sem:" in
     konzola dolga_stevilka_ali_konstanta zaporedje_stevk;  (*Funkcija, ki vzame 2 vnosa, ter pokliče funkcijo konzola, vnosa vstavi v Mealyev stroj oz. se ponavlja, dokler vnosa nista števili.*)
   
-  let rec ponovno_previrjanje ()=
+  let rec ponovno_preverjanje ()=
     print_endline "Želite preveriti še kako zaporedje števk? (da/ne)";
     let response = read_line () in
     match String.lowercase_ascii response with
@@ -133,8 +133,8 @@ let () =
     | "ne" -> print_endline "Lep dan in nasvidenje!"  (*Program se ugasne.*)
     | _ -> 
       print_endline "Odgovorite z Da ali Ne";
-      ponovno_previrjanje ()  (*Funkcija, ki se izvede po koncu Mealyevega procesa, uporabnika vpraša, če želi iskanje ponoviti ali zaključiti program.*)
+      ponovno_preverjanje ()  (*Funkcija, ki se izvede po koncu Mealyevega procesa, uporabnika vpraša, če želi iskanje ponoviti ali zaključiti program.*)
     in 
-    ponovno_previrjanje ()
+    ponovno_preverjanje ()
   in
   vprasaj ()
