@@ -23,11 +23,12 @@ To idejo sem še malo razširil, saj ujemanje 9-mestnega števila v manj kot 100
 verjetnost je namreč premajhna. Avtomat pa bi takrat vrnil 10000 znakov. Zato sem to idejo nadomestil z iskanjem poljubne (krajše) dolžine vzorca (števila),
 nato pa še dodal druge konstante in iskanje v poljubnem številu. 
 
-Primer: *Iskanje števila 26 v 31415926535897932384626433 (pi spremenjen v naravno število),
-in avtomat vrne  _______X_______________X___, kjer je X mesto, kjer se ujemanje konča.*
+Primer: *Iskanje števila 26 v 3141592653589793238462643 (pi spremenjen v naravno število),
+in avtomat vrne
+-------X--------------X--, kjer je X mesto, kjer se ujemanje konča.*
 
-Primer: *Iskanje 252 v 2525265 (poljubno število) naj tukaj avtomat vrne __X_X__ ali __X____?
-Izkaže se, da je bolj smiselen odgovor drugi. Tukaj sem si pomagal s KMP algoritmom, ki je algoritem za delno ujemnaje in prvo možnost izloči.
+Primer: *Iskanje 252 v 2525265 (poljubno število) naj tukaj avtomat vrne*  --X-X-- ali --X----?
+*Izkaže se, da je bolj smiselen odgovor drugi. Tukaj sem si pomagal s KMP algoritmom, ki je algoritem za delno ujemnaje in prvo možnost izloči.
 Več o KMP algoritmu najdete v virih.*
 
 Končni izdelek torej sprejme 2 vnosa: 
