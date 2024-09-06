@@ -23,38 +23,38 @@ let initial_state = {
 (*Funkcija, ki ustvari KMP list*)
 let ustvari_KMP_list niz =
   let dolzina = String.length niz in  (*Shranimo dolžino niza.*)
-  let kmp_list = Array.make dolzina 0 in  (*Ustvarimo array, ki je dolg tako kot niz in za enkrat vsebuje same ničle.*)
+  let kmp_list = Array.make dolzina 0 in  (*Ustvarimo array, ki je dolg toliko, kot niz, in zaenkrat vsebuje same ničle.*)
   let j = ref 0 in  (*Ustvarimo spremenljivko, jo bomo spreminjali.*)
   for i = 1 to dolzina - 1 do  (*Zanka for teče od 1 do dolzina - 1.*)
     while !j > 0 && niz.[!j] <> niz.[i] do
-      j := kmp_list.(!j - 1)  (*Kadar je število j>0 in se hkrati števili na j-tem in i-tem mestu v nizu NE ujemata spreminjamo j.*)
+      j := kmp_list.(!j - 1)  (*Kadar je število j>0 in se hkrati števili na j-tem in i-tem mestu v nizu NE ujemata, spreminjamo j.*)
     done;
     if niz.[!j] = niz.[i] then
-      incr j;  (*Kadar pa se ujemata, pa povečamo j za 1.*)
+      incr j;  (*Kadar se ujemata, pa povečamo j za 1.*)
     kmp_list.(i) <- !j  (*Na i-to mesto v array-ju postavimo j.*)
   done;
   kmp_list
 
 
-(*Funkcija za nek niz in konstane vrne trak in število ponovitev.*)
+(*Funkcija za nek niz in konstante vrne trak in število ponovitev.*)
 let process_text niz dolga_stevilka_ali_konstanta =
-  let kmp_table = ustvari_KMP_list niz in (*Ustavri se KMP list.*)
+  let kmp_table = ustvari_KMP_list niz in (*Ustvari se KMP list.*)
   let dolzina = String.length niz in (*Shranimo dolžino niza.*)
 
   let obnovi state stevka = (*Funkcija, ki obnavlja stanje, ko preverimo vsako števko v konstanti.*)
     let rec poisci_indeks indeks = 
       if indeks > 0 && niz.[indeks] <> stevka then poisci_indeks (kmp_table.(indeks - 1)) else indeks 
     in
-    let indeks = poisci_indeks state.indeks in (*Indeks odvisn od prejšnega stanja. Če je večji od 0 in se trenutna števka in vzorec v indeksu ne ujemata 
+    let indeks = poisci_indeks state.indeks in (*Indeks je odvisen od prejšnega stanja. Če je večji od 0 in se trenutna števka in vzorec v indeksu ne ujemata, 
     funkcija pokliče sebe na vrednosti KMP lista prejšnjega indeksa.*)
-    let novi_indeks = if indeks < dolzina && niz.[indeks] = stevka then indeks + 1 else indeks in (*Če je dolzina vzorca daljša od indeksa in niz v indeksu ujema s števko, ga povečamo za 1 drugče ohranimo.*)
+    let novi_indeks = if indeks < dolzina && niz.[indeks] = stevka then indeks + 1 else indeks in (*Če je dolzina vzorca daljša od indeksa in se niz v indeksu ujema s števko, ga povečamo za 1, drugče ohranimo.*)
     let ujemanje = novi_indeks = dolzina in (*Logična vrednost, ki je True, če se novi indeks enak dolzini vzorca.*)
 
     { 
       indeks = if ujemanje then 0 else novi_indeks;
       vrnjen_trak = state.vrnjen_trak ^ (if ujemanje then "X" else "_");
       st_ponovitev = state.st_ponovitev + if ujemanje then 1 else 0;
-    } (*Posdobimo stanje - če se pojavi ujemanje indeks nastavimo na 0, na trak dodamo "X" in ponovitev povečamo za 1, drugače indeksa ne spreminjamo in na trak dodamo "_".*)
+    } (*Posodobimo stanje - če se pojavi ujemanje, indeks nastavimo na 0, na trak dodamo "X" in ponovitev povečamo za 1, drugače indeksa ne spreminjamo in na trak dodamo "_".*)
   in
 
   String.fold_left obnovi initial_state  dolga_stevilka_ali_konstanta (*Funkcijo obnovi zaženemo na začetno stanje, ter čez celo konstanto.*)
@@ -121,8 +121,8 @@ let () =
   let rec vprasaj () =
     print_endline "Seznam prejšnih rezultatov\n(const., števke, št. ponovitev)";
     print_seznam ();
-    let zaporedje_stevk = read_int_from_user "Vnesite svojo najljubšo zaporedje števk (telefonsko številko(brez presledkov), srečno število,... ) in naj zaradi zanimivosti ne presega 9 mest" in
-    let dolga_stevilka_ali_konstanta = read_int_from_user "Da preverite ali se vaša številka pojavi v (1)pi-ju, (2)e-ju, (3)phi-ju vpišite številko v oklepaju, za poljubno število pa ga v celoti izpišite sem:" in
+    let zaporedje_stevk = read_int_from_user "Vnesite svojo najljubšo zaporedje števk (telefonsko številko brez presledkov, srečno število,... ) in zaradi zanimivosti naj ne presega 9 mest" in
+    let dolga_stevilka_ali_konstanta = read_int_from_user "Da preverite, ali se vaša številka pojavi v (1)pi-ju, (2)e-ju, (3)phi-ju, vpišite številko v oklepaju pred konstanto, za poljubno število pa ga v celoti izpišite sem:" in
     konzola dolga_stevilka_ali_konstanta zaporedje_stevk;  (*Funkcija, ki vzame 2 vnosa, ter pokliče funkcijo konzola, vnosa vstavi v Mealyev stroj oz. se ponavlja, dokler vnosa nista števili.*)
   
   let rec ponovno_previrjanje ()=
@@ -133,7 +133,7 @@ let () =
     | "ne" -> print_endline "Lep dan in nasvidenje!"  (*Program se ugasne.*)
     | _ -> 
       print_endline "Odgovorite z Da ali Ne";
-      ponovno_previrjanje ()  (*Funkcija, ki se izvede po koncu Mealyevega procesa, ter uporabnika vpraša, če želi stvar ponoviti oz. zaključiti program.*)
+      ponovno_previrjanje ()  (*Funkcija, ki se izvede po koncu Mealyevega procesa, uporabnika vpraša, če želi iskanje ponoviti ali zaključiti program.*)
     in 
     ponovno_previrjanje ()
   in
