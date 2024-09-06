@@ -36,7 +36,7 @@ Končni idelek torej sprejme 2 vnosa:
 
 ## Navodila za uporabo
 Program se priže z ukazom _Task : Run Task -> Ocaml_ v programu VSCode
-ali prek spleta na povezavi \url{https://www.tutorialspoint.com/compile_ocaml_online.php}, 
+ali prek spleta na povezavi https://www.tutorialspoint.com/compile_ocaml_online.php , 
 kamor skopirate celotno vsebino datoteke avtomat.ml
 
 ### Tekstovni vmesnik
@@ -44,7 +44,7 @@ S programom komunicirate preko preprostega tekstovnega vmesnika, le ta pa vam bo
 
 ## Viri
 
--  \url{https://en.wikipedia.org/wiki/Mealy_machine}
--  \url{https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm}
--  \url{https://github.com/matijapretnar/programiranje-1}
+-  https://en.wikipedia.org/wiki/Mealy_machine
+-  https://en.wikipedia.org/wiki/Knuth%E2%80%93Morris%E2%80%93Pratt_algorithm
+-  https://github.com/matijapretnar/programiranje-1
 
