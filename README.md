@@ -4,12 +4,12 @@ V teoriji računanja je Mealyev avtomat determinističen avtomat s končnim stan
 
 ## Formalna definicija
 
-Mealyev stroj je 6 terica $(S, S_0 , \Sigma, \Lambda, T, G)$, sestavljena iz:
+Mealyev stroj je šesterica $(S, S_0 , \Sigma, \Lambda, T, G)$, sestavljena iz:
 
 - končne množice stanj $S$,
 - začetnega stanja $S_0$, ki je element množice $S$,
-- končena množica vhodnih znakov $\Sigma$ (vhodna abeceda),
-- končena množica izhodnih znakov $\Lambda$ (izhodna abeceda),
+- končna množica vhodnih znakov $\Sigma$ (vhodna abeceda),
+- končna množica izhodnih znakov $\Lambda$ (izhodna abeceda),
 - prehodnih funkcij $T : S \times \Sigma \rightarrow S$, ki silka par stanja in vnosa v naslednjo stanje,
 - izhodnih funkcij $G : S \times \Sigma \rightarrow \Lambda$, ki slika par stanja in vnosa v izhodni znak.
 
@@ -20,10 +20,10 @@ Mealyev stroj je 6 terica $(S, S_0 , \Sigma, \Lambda, T, G)$, sestavljena iz:
 ## Projekt
 Moja implementacija Mealyevega avtomata v nalogi je izhajala iz ideje, kako poiskati telefonsko številko v decimalkah pi-ja.
 To idejo sem še malo razširil, saj ujemanje 9-mestnega števila v manj kot 10000 decimalkah pi-ja skoraj nima smisla,
-verjetnost je namreč premajhna. Avtomat pa bit takrat vrnil 10000 znakov. Zato sem to idejo nadomestil z iskanjem poljubne (krajše) dolžine vzorca (števila),
+verjetnost je namreč premajhna. Avtomat pa bi takrat vrnil 10000 znakov. Zato sem to idejo nadomestil z iskanjem poljubne (krajše) dolžine vzorca (števila),
 nato pa še dodal druge konstante in iskanje v poljubnem številu. 
 
-Primer: *Iskanje števila 23 v 31415926535897932384626433 (pi spremenjen v naravno število),
+Primer: *Iskanje števila 26 v 31415926535897932384626433 (pi spremenjen v naravno število),
 in avtomat vrne  _______X_______________X___, kjer je X mesto, kjer se ujemanje konča.*
 
 Primer: *Iskanje 252 v 2525265 (poljubno število) naj tukaj avtomat vrne __X_X__ ali __X____?
